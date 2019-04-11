@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The-Dentak", "The-Dentak\The-Dentak.csproj", "{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57A5D37F-FBDC-45A9-9ECD-5F28E341A247}
+	EndGlobalSection
+EndGlobal
