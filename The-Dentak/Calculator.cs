@@ -22,12 +22,12 @@ class Calculator
             return;
         }
 
-        var sum = add(num1, num2);
+        var sum = Add(num1, num2);
 
         Console.WriteLine($"{num1} + {num2} = {sum}");
     }
 
-    public int add(int num1, int num2)
+    public int Add(int num1, int num2)
     {
         return num1 + num2;
     }
