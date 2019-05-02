@@ -1,7 +1,15 @@
 using System;
 
+/// <summary>
+/// 計算機クラス
+/// </summary>
 class Calculator
 {
+    /// <summary>
+    /// 計算を実行する。
+    /// 数値を二つ受け取り、足した結果を出力する。
+    /// 数値以外の文字列を受け取った場合、処理を終了する。
+    /// </summary>
     public void Execute()
     {
         Console.WriteLine("Please input two number.");
@@ -27,6 +35,12 @@ class Calculator
         Console.WriteLine($"{num1} + {num2} = {sum}");
     }
 
+    /// <summary>
+    /// 二つの数値を足す。
+    /// </summary>
+    /// <param name="num1">数値</param>
+    /// <param name="num2">数値</param>
+    /// <returns>二つの数値の和</returns>
     public int Add(int num1, int num2)
     {
         return num1 + num2;
