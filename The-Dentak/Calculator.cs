@@ -3,7 +3,7 @@ using System;
 /// <summary>
 /// 計算機クラス
 /// </summary>
-class Calculator
+public class Calculator
 {
     /// <summary>
     /// 計算を実行する。

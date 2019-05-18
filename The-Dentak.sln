@@ -5,7 +5,10 @@ VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The-Dentak", "The-Dentak\The-Dentak.csproj", "{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The-DentakTest", "The-DentakTest\The-DentakTest.csproj", "{0378B315-CDF6-4A6D-8F8E-7E863EEA4E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The-DentakTest", "The-DentakTest\The-DentakTest.csproj", "{0378B315-CDF6-4A6D-8F8E-7E863EEA4E91}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3C7DAC98-1A44-44EE-848B-6F6EC0BF8503} = {3C7DAC98-1A44-44EE-848B-6F6EC0BF8503}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
