@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using System.Text;
 
 namespace The_DentakTest
 {
@@ -17,6 +16,7 @@ namespace The_DentakTest
         private readonly string NEW_LINE = Environment.NewLine;
 
         /// <summary>
+        /// 正常系
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
         [TestMethod]
@@ -37,6 +37,7 @@ namespace The_DentakTest
         }
 
         /// <summary>
+        /// 異常系
         /// 一つ目の入力が数値でない場合のテスト
         /// </summary>
         [TestMethod]
@@ -55,6 +56,7 @@ namespace The_DentakTest
         }
 
         /// <summary>
+        /// 異常系
         /// 二つ目の入力が数値でない場合のテスト
         /// </summary>
         [TestMethod]
@@ -74,10 +76,54 @@ namespace The_DentakTest
         }
 
         /// <summary>
+        /// 異常系
+        /// 計算結果がint型の最大値を上回る場合のテスト
+        /// </summary>
+        [TestMethod]
+        public void ResultIsMoreThanIntManCase()
+        {
+            var firstInput = int.MaxValue.ToString();
+            var secondInput = "1";
+
+            var sum = int.MinValue.ToString(); // overflow
+
+            var expected = $"Please input two number.{NEW_LINE}" +
+                           $"num1:" +
+                           $"num2:" +
+                           $"{firstInput} + {secondInput} = {sum}{NEW_LINE}";
+
+            var actual = ExecuteCalculator(firstInput, secondInput);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// 異常系
+        /// 計算結果がint型の最小値を下回る場合のテスト
+        /// </summary>
+        [TestMethod]
+        public void ResultIsLessThanIntMinCase()
+        {
+            var firstInput = int.MinValue.ToString();
+            var secondInput = "-1";
+
+            var sum = int.MaxValue.ToString(); // overflow
+
+            var expected = $"Please input two number.{NEW_LINE}" +
+                           $"num1:" +
+                           $"num2:" +
+                           $"{firstInput} + {secondInput} = {sum}{NEW_LINE}";
+
+            var actual = ExecuteCalculator(firstInput, secondInput);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
         /// 計算を実行する。
         /// </summary>
         /// <param name="input1">標準入力に入力する一つ目の文字列</param>
-        /// <param name="input2">標準入力に入力する一つ目の文字列</param>
+        /// <param name="input2">標準入力に入力する二つ目の文字列</param>
         /// <returns>標準出力に出力された文字列</returns>
         private string ExecuteCalculator(string input1, string input2)
         {
