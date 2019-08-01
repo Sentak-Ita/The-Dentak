@@ -40,6 +40,7 @@ public class Calculator
         } catch (OverflowException)
         {
             Console.WriteLine("error");
+            Console.WriteLine("overflow happened.");
             return;
         }
 

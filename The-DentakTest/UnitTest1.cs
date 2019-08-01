@@ -93,7 +93,8 @@ namespace The_DentakTest
             var expected = $"Please input two number.{NEW_LINE}" +
                            $"num1:" +
                            $"num2:" +
-                           $"error{NEW_LINE}";
+                           $"error{NEW_LINE}" +
+                           $"overflow happened.{NEW_LINE}";
 
             var actual = ExecuteCalculator(firstInput, secondInput);
 
@@ -115,7 +116,8 @@ namespace The_DentakTest
             var expected = $"Please input two number.{NEW_LINE}" +
                            $"num1:" +
                            $"num2:" +
-                           $"error{NEW_LINE}";
+                           $"error{NEW_LINE}" +
+                           $"overflow happened.{NEW_LINE}";
 
             var actual = ExecuteCalculator(firstInput, secondInput);
 
