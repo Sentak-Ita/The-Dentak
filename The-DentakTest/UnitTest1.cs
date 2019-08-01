@@ -20,7 +20,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("³íŒn")]
         [TestMethod]
-        public void TwoInputsIsNumberCase()
+        public void “ñ‚Â‚Ì“ü—Í‚ª—¼•û‚Æ‚à”’l‚Å‚ ‚é()
         {
             var firstInput = "1";
             var secondInput = "2";
@@ -41,7 +41,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        public void FirstInputIsNotNumberCase()
+        public void ˆê‚Â–Ú‚Ì“ü—Í‚ª”’l‚Å‚È‚¢()
         {
             var firstInput = "test";
             var secondInput = "2";
@@ -60,7 +60,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        public void SecondInputIsNotNumberCase()
+        public void “ñ‚Â–Ú‚Ì“ü—Í‚ª”’l‚Å‚È‚¢()
         {
             var firstInput = "1";
             var secondInput = "test";
@@ -80,7 +80,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        public void ResultIsMoreThanIntManCase()
+        public void ŒvZŒ‹‰Ê‚ªintŒ^‚ÌÅ‘å’l‚ğã‰ñ‚é()
         {
             var firstInput = int.MaxValue.ToString();
             var secondInput = "1";
@@ -102,7 +102,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        public void ResultIsLessThanIntMinCase()
+        public void ŒvZŒ‹‰Ê‚ªintŒ^‚ÌÅ¬’l‚ğ‰º‰ñ‚é()
         {
             var firstInput = int.MinValue.ToString();
             var secondInput = "-1";
