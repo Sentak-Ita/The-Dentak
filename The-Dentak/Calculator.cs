@@ -19,6 +19,7 @@ public class Calculator
         var firstInputString = Console.ReadLine();
         if(!int.TryParse(firstInputString, out var num1))
         {
+            Console.WriteLine("error");
             Console.WriteLine($"{firstInputString} is not a number!!");
             return;
         }
@@ -27,6 +28,7 @@ public class Calculator
         var secondInputString = Console.ReadLine();
         if(!int.TryParse(secondInputString, out var num2))
         {
+            Console.WriteLine("error");
             Console.WriteLine($"{secondInputString} is not a number!!");
             return;
         }
@@ -41,6 +43,7 @@ public class Calculator
             return;
         }
 
+        Console.WriteLine("success");
         Console.WriteLine($"{num1} + {num2} = {sum}");
     }
 
