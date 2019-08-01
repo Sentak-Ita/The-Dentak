@@ -90,7 +90,7 @@ namespace The_DentakTest
             var expected = $"Please input two number.{NEW_LINE}" +
                            $"num1:" +
                            $"num2:" +
-                           $"{firstInput} + {secondInput} = {sum}{NEW_LINE}";
+                           $"error{NEW_LINE}";
 
             var actual = ExecuteCalculator(firstInput, secondInput);
 
@@ -112,7 +112,7 @@ namespace The_DentakTest
             var expected = $"Please input two number.{NEW_LINE}" +
                            $"num1:" +
                            $"num2:" +
-                           $"{firstInput} + {secondInput} = {sum}{NEW_LINE}";
+                           $"error{NEW_LINE}";
 
             var actual = ExecuteCalculator(firstInput, secondInput);
 
