@@ -16,9 +16,9 @@ namespace The_DentakTest
         private readonly string NEW_LINE = Environment.NewLine;
 
         /// <summary>
-        /// 正常系
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
+        [TestCategory("正常系")]
         [TestMethod]
         public void TwoInputsIsNumberCase()
         {
@@ -37,9 +37,9 @@ namespace The_DentakTest
         }
 
         /// <summary>
-        /// 異常系
         /// 一つ目の入力が数値でない場合のテスト
         /// </summary>
+        [TestCategory("異常系")]
         [TestMethod]
         public void FirstInputIsNotNumberCase()
         {
@@ -56,9 +56,9 @@ namespace The_DentakTest
         }
 
         /// <summary>
-        /// 異常系
         /// 二つ目の入力が数値でない場合のテスト
         /// </summary>
+        [TestCategory("異常系")]
         [TestMethod]
         public void SecondInputIsNotNumberCase()
         {
@@ -76,9 +76,9 @@ namespace The_DentakTest
         }
 
         /// <summary>
-        /// 異常系
         /// 計算結果がint型の最大値を上回る場合のテスト
         /// </summary>
+        [TestCategory("異常系")]
         [TestMethod]
         public void ResultIsMoreThanIntManCase()
         {
@@ -98,9 +98,9 @@ namespace The_DentakTest
         }
 
         /// <summary>
-        /// 異常系
         /// 計算結果がint型の最小値を下回る場合のテスト
         /// </summary>
+        [TestCategory("異常系")]
         [TestMethod]
         public void ResultIsLessThanIntMinCase()
         {
