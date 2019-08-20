@@ -16,6 +16,11 @@ namespace The_DentakTest
         private readonly string NEW_LINE = Environment.NewLine;
 
         /// <summary>
+        /// テスト対象のオブジェクト
+        /// </summary>
+        private Calculator calclator = new Calculator();
+
+        /// <summary>
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
         [TestCategory("正常系")]
@@ -24,15 +29,9 @@ namespace The_DentakTest
         {
             var firstInput = "1";
             var secondInput = "2";
-            var sum = "3";
 
-            var expected = $"Please input two number.{NEW_LINE}" +
-                           $"num1:" +
-                           $"num2:" +
-                           $"success{NEW_LINE}" +
-                           $"{firstInput} + {secondInput} = {sum}{NEW_LINE}";
-
-            var actual = ExecuteCalculator(firstInput, secondInput);
+            var expected = 3;
+            var actual = calclator.Add(firstInput, secondInput);
 
             Assert.AreEqual(expected, actual);
         }
@@ -47,14 +46,16 @@ namespace The_DentakTest
             var firstInput = "test";
             var secondInput = "2";
 
-            var expected = $"Please input two number.{NEW_LINE}" +
-                           $"num1:" +
-                           $"error{NEW_LINE}" +
-                           $"{firstInput} is not a number!!{NEW_LINE}";
+            try
+            {
+                calclator.Add(firstInput, secondInput);
+            } catch(ArgumentException e)
+            {
+                StringAssert.Contains(e.Message, "test is not a number!!");
+                return;
+            }
 
-            var actual = ExecuteCalculator(firstInput, secondInput);
-
-            Assert.AreEqual(expected, actual);
+            Assert.Fail("ArgumentExceptionが発生しなかった");
         }
 
         /// <summary>
@@ -67,15 +68,17 @@ namespace The_DentakTest
             var firstInput = "1";
             var secondInput = "test";
 
-            var expected = $"Please input two number.{NEW_LINE}" +
-                           $"num1:" +
-                           $"num2:" +
-                           $"error{NEW_LINE}" +
-                           $"{secondInput} is not a number!!{NEW_LINE}";
+            try
+            {
+                calclator.Add(firstInput, secondInput);
+            }
+            catch (ArgumentException e)
+            {
+                StringAssert.Contains(e.Message, "test is not a number!!");
+                return;
+            }
 
-            var actual = ExecuteCalculator(firstInput, secondInput);
-
-            Assert.AreEqual(expected, actual);
+            Assert.Fail("ArgumentExceptionが発生しなかった");
         }
 
         /// <summary>
@@ -88,17 +91,16 @@ namespace The_DentakTest
             var firstInput = int.MaxValue.ToString();
             var secondInput = "1";
 
-            var sum = int.MinValue.ToString(); // overflow
+            try
+            {
+                calclator.Add(firstInput, secondInput);
+            }
+            catch (OverflowException)
+            {
+                return;
+            }
 
-            var expected = $"Please input two number.{NEW_LINE}" +
-                           $"num1:" +
-                           $"num2:" +
-                           $"error{NEW_LINE}" +
-                           $"overflow happened.{NEW_LINE}";
-
-            var actual = ExecuteCalculator(firstInput, secondInput);
-
-            Assert.AreEqual(expected, actual);
+            Assert.Fail("OverflowExceptionが発生しなかった");
         }
 
         /// <summary>
@@ -111,42 +113,16 @@ namespace The_DentakTest
             var firstInput = int.MinValue.ToString();
             var secondInput = "-1";
 
-            var sum = int.MaxValue.ToString(); // overflow
+            try
+            {
+                calclator.Add(firstInput, secondInput);
+            }
+            catch (OverflowException)
+            {
+                return;
+            }
 
-            var expected = $"Please input two number.{NEW_LINE}" +
-                           $"num1:" +
-                           $"num2:" +
-                           $"error{NEW_LINE}" +
-                           $"overflow happened.{NEW_LINE}";
-
-            var actual = ExecuteCalculator(firstInput, secondInput);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>
-        /// 計算を実行する。
-        /// </summary>
-        /// <param name="input1">標準入力に入力する一つ目の文字列</param>
-        /// <param name="input2">標準入力に入力する二つ目の文字列</param>
-        /// <returns>標準出力に出力された文字列</returns>
-        private string ExecuteCalculator(string input1, string input2)
-        {
-            var stdInput = new StringReader($"{input1}{NEW_LINE}{input2}{NEW_LINE}");
-            Console.SetIn(stdInput);
-
-            var stdOutput = new StreamWriter(new MemoryStream());
-            Console.SetOut(stdOutput);
-
-            var calclator = new Calculator();
-            calclator.Execute();
-
-            stdOutput.Flush();
-            stdOutput.BaseStream.Seek(0, SeekOrigin.Begin);
-            var stdOutputReader = new StreamReader(stdOutput.BaseStream);
-            var result = stdOutputReader.ReadToEnd();
-
-            return result;
+            Assert.Fail("OverflowExceptionが発生しなかった");
         }
     }
 }

@@ -10,11 +10,29 @@ namespace The_Dentak
         /// <summary>
         /// エントリーポイント
         /// </summary>
-        /// <param name="args">コマンドライン引数</param>
-        static void Main(string[] args)
+        static void Main()
         {
+            Console.WriteLine("Please input two number.");
+
+            Console.Write("num1:");
+            var firstInput = Console.ReadLine();
+            Console.Write("num2:");
+            var secondInput = Console.ReadLine();
+
             var calculator = new Calculator();
-            calculator.Execute();
+            int result;
+            try
+            {
+                result = calculator.Add(firstInput, secondInput);
+            } catch(Exception e)
+            {
+                Console.WriteLine("error");
+                Console.WriteLine(e.Message);
+                return;
+            }
+
+            Console.WriteLine("success");
+            Console.WriteLine($"{firstInput} + {secondInput} = {result}");
         }
     }
 }
