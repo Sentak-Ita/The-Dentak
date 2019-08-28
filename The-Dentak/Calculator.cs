@@ -6,24 +6,50 @@ using System;
 public class Calculator
 {
     /// <summary>
-    /// 計算を実行する。
-    /// 数値を表す文字列を二つ受け取り、足した結果を返す。
+    /// 一つ目の数
     /// </summary>
-    /// <exception cref="ArgumentException">数値以外の文字列を受け取った場合</exception>
-    /// <exception cref="OverflowException">計算時にオーバーフローした場合</exception>
-    public int Add(string firstInput, string secondInput)
+    private readonly Number firstNumber;
+
+    /// <summary>
+    /// 二つ目の数
+    /// </summary>
+    private readonly Number secondNumber;
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="firstNumber">計算する一つ目の数</param>
+    /// <param name="secondNumber">計算する二つ目の数</param>
+    /// <exception cref="InvalidFirstArgumentException">一つ目の引数が無効の場合</exception>
+    /// <exception cref="InvalidSecondArgumentException">二つ目の引数が無効の場合</exception>
+    public Calculator(string firstNumber, string secondNumber)
     {
-        if(!int.TryParse(firstInput, out var firstNumber))
+        try
         {
-            throw new ArgumentException($"{firstInput} is not a number!!");
+            this.firstNumber = new Number(firstNumber);
         }
-        
-        if(!int.TryParse(secondInput, out var secondNumber))
+        catch (ArgumentException e)
         {
-            throw new ArgumentException($"{secondInput} is not a number!!");
+            throw new InvalidFirstArgumentException($"first number {firstNumber} is invalid", e);
         }
 
-        var sum = checked(firstNumber + secondNumber);
-        return sum;
+        try
+        {
+            this.secondNumber = new Number(secondNumber);
+        }
+        catch (ArgumentException e)
+        {
+            throw new InvalidSecondArgumentException($"second number {secondNumber} is invalid", e);
+        }
+    }
+
+    /// <summary>
+    /// 足し算を実行する。
+    /// </summary>
+    /// <exception cref="OverflowException">計算時にオーバーフローした場合</exception>
+    public int Add()
+    {
+        var sum = firstNumber + secondNumber;
+        return sum.Value;
     }
 }

@@ -16,11 +16,6 @@ namespace The_DentakTest
         private readonly string NEW_LINE = Environment.NewLine;
 
         /// <summary>
-        /// テスト対象のオブジェクト
-        /// </summary>
-        private Calculator calclator = new Calculator();
-
-        /// <summary>
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
         [TestCategory("正常系")]
@@ -31,7 +26,9 @@ namespace The_DentakTest
             var secondInput = "2";
 
             var expected = 3;
-            var actual = calclator.Add(firstInput, secondInput);
+
+            var calculator = new Calculator(firstInput, secondInput);
+            var actual = calculator.Add();
 
             Assert.AreEqual(expected, actual);
         }
@@ -41,21 +38,14 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("異常系")]
         [TestMethod]
-        public void 一つ目の入力が数値でない()
+        [ExpectedException(typeof(InvalidFirstArgumentException))]
+        public void 一つ目の入力が数値でないときInvalidFirstArgumentExceptionが発生する()
         {
             var firstInput = "test";
             var secondInput = "2";
 
-            try
-            {
-                calclator.Add(firstInput, secondInput);
-            } catch(ArgumentException e)
-            {
-                StringAssert.Contains(e.Message, "test is not a number!!");
-                return;
-            }
-
-            Assert.Fail("ArgumentExceptionが発生しなかった");
+            var calculator = new Calculator(firstInput, secondInput);
+            calculator.Add();
         }
 
         /// <summary>
@@ -63,22 +53,14 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("異常系")]
         [TestMethod]
-        public void 二つ目の入力が数値でない()
+        [ExpectedException(typeof(InvalidSecondArgumentException))]
+        public void 二つ目の入力が数値でないときInvalidSecondArgumentExceptionが発生する()
         {
             var firstInput = "1";
             var secondInput = "test";
 
-            try
-            {
-                calclator.Add(firstInput, secondInput);
-            }
-            catch (ArgumentException e)
-            {
-                StringAssert.Contains(e.Message, "test is not a number!!");
-                return;
-            }
-
-            Assert.Fail("ArgumentExceptionが発生しなかった");
+            var calculator = new Calculator(firstInput, secondInput);
+            calculator.Add();
         }
 
         /// <summary>
@@ -86,21 +68,14 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("異常系")]
         [TestMethod]
-        public void 計算結果がint型の最大値を上回る()
+        [ExpectedException(typeof(OverflowException))]
+        public void 計算結果がint型の最大値を上回ったときOverflowExceptionが発生する()
         {
             var firstInput = int.MaxValue.ToString();
             var secondInput = "1";
 
-            try
-            {
-                calclator.Add(firstInput, secondInput);
-            }
-            catch (OverflowException)
-            {
-                return;
-            }
-
-            Assert.Fail("OverflowExceptionが発生しなかった");
+            var calculator = new Calculator(firstInput, secondInput);
+            calculator.Add();
         }
 
         /// <summary>
@@ -108,21 +83,14 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("異常系")]
         [TestMethod]
-        public void 計算結果がint型の最小値を下回る()
+        [ExpectedException(typeof(OverflowException))]
+        public void 計算結果がint型の最小値を下回ったときOverflowExceptionが発生する()
         {
             var firstInput = int.MinValue.ToString();
             var secondInput = "-1";
 
-            try
-            {
-                calclator.Add(firstInput, secondInput);
-            }
-            catch (OverflowException)
-            {
-                return;
-            }
-
-            Assert.Fail("OverflowExceptionが発生しなかった");
+            var calculator = new Calculator(firstInput, secondInput);
+            calculator.Add();
         }
     }
 }

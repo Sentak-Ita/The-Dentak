@@ -19,11 +19,11 @@ namespace The_Dentak
             Console.Write("num2:");
             var secondInput = Console.ReadLine();
 
-            var calculator = new Calculator();
             int result;
             try
             {
-                result = calculator.Add(firstInput, secondInput);
+                var calculator = new Calculator(firstInput, secondInput);
+                result = calculator.Add();
             } catch(Exception e)
             {
                 Console.WriteLine("error");
