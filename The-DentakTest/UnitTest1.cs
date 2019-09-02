@@ -68,7 +68,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        [ExpectedException(typeof(OverflowException))]
+        [ExpectedException(typeof(SumOverflowsException))]
         public void ŒvZŒ‹‰Ê‚ªintŒ^‚ÌÅ‘å’l‚ğã‰ñ‚Á‚½‚Æ‚«OverflowException‚ª”­¶‚·‚é()
         {
             var firstInput = int.MaxValue.ToString();
@@ -83,7 +83,7 @@ namespace The_DentakTest
         /// </summary>
         [TestCategory("ˆÙíŒn")]
         [TestMethod]
-        [ExpectedException(typeof(OverflowException))]
+        [ExpectedException(typeof(SumOverflowsException))]
         public void ŒvZŒ‹‰Ê‚ªintŒ^‚ÌÅ¬’l‚ğ‰º‰ñ‚Á‚½‚Æ‚«OverflowException‚ª”­¶‚·‚é()
         {
             var firstInput = int.MinValue.ToString();

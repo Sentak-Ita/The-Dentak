@@ -28,7 +28,7 @@ public class Calculator
         {
             FirstNumber = new Number(firstNumber);
         }
-        catch (ArgumentException e)
+        catch (ArgumentIsNotNumberException e)
         {
             throw new InvalidFirstArgumentException(firstNumber, e);
         }
@@ -37,7 +37,7 @@ public class Calculator
         {
             SecondNumber = new Number(secondNumber);
         }
-        catch (ArgumentException e)
+        catch (ArgumentIsNotNumberException e)
         {
             throw new InvalidSecondArgumentException(secondNumber, e);
         }
@@ -46,7 +46,7 @@ public class Calculator
     /// <summary>
     /// 足し算を実行する。
     /// </summary>
-    /// <exception cref="OverflowException">計算時にオーバーフローした場合</exception>
+    /// <exception cref="SumOverflowsException">計算時にオーバーフローした場合</exception>
     public int Add()
     {
         var sum = FirstNumber + SecondNumber;

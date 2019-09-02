@@ -23,7 +23,7 @@ public class Number
     /// コンストラクタ
     /// </summary>
     /// <param name="valueString">数値を表す文字列</param>
-    /// <exception cref="ArgumentException">数値への変換に失敗した場合</exception>
+    /// <exception cref="ArgumentIsNotNumberException">数値への変換に失敗した場合</exception>
     public Number(string valueString)
     {
         try
@@ -31,7 +31,7 @@ public class Number
             Value = int.Parse(valueString);
         } catch (Exception e)
         {
-            throw new ArgumentException($"{valueString} is not a number.", e);
+            throw new ArgumentIsNotNumberException(valueString, e);
         }
     }
 
@@ -41,10 +41,17 @@ public class Number
     /// <param name="augend">足される数</param>
     /// <param name="addend">足す数</param>
     /// <returns>二つの数値の和を表すNumberオブジェクト</returns>
-    /// <exception cref="OverflowException">足し算でオーバーフローが発生した場合</exception>
+    /// <exception cref="SumOverflowsException">足し算でオーバーフローが発生した場合</exception>
     public static Number operator+(Number augend, Number addend)
     {
-        var sumValue = checked(augend.Value + addend.Value);
+        var sumValue = 0;
+        try
+        {
+            sumValue = checked(augend.Value + addend.Value);
+        } catch (OverflowException e)
+        {
+            throw new SumOverflowsException(augend.Value, addend.Value, e);
+        }
         var sum = new Number(sumValue);
         return sum;
     }

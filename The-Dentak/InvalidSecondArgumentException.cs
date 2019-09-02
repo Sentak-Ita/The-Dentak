@@ -6,7 +6,7 @@
 public class InvalidSecondArgumentException : Exception
 {
     public InvalidSecondArgumentException(string argument, Exception innerException) 
-        : base($"second number {argument} is invalid", innerException)
+        : base($"second number {argument} is invalid.", innerException)
     {
     }
 }
