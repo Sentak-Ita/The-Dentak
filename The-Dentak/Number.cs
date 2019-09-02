@@ -14,7 +14,7 @@ public class Number
     /// コンストラクタ
     /// </summary>
     /// <param name="value">数値</param>
-    public Number(int value)
+    private Number(int value)
     {
         Value = value;
     }
