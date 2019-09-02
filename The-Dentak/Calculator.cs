@@ -8,12 +8,12 @@ public class Calculator
     /// <summary>
     /// 一つ目の数
     /// </summary>
-    private readonly Number firstNumber;
+    private Number FirstNumber { get; }
 
     /// <summary>
     /// 二つ目の数
     /// </summary>
-    private readonly Number secondNumber;
+    private Number SecondNumber { get; }
 
     /// <summary>
     /// コンストラクタ
@@ -26,7 +26,7 @@ public class Calculator
     {
         try
         {
-            this.firstNumber = new Number(firstNumber);
+            FirstNumber = new Number(firstNumber);
         }
         catch (ArgumentException e)
         {
@@ -35,7 +35,7 @@ public class Calculator
 
         try
         {
-            this.secondNumber = new Number(secondNumber);
+            SecondNumber = new Number(secondNumber);
         }
         catch (ArgumentException e)
         {
@@ -49,7 +49,7 @@ public class Calculator
     /// <exception cref="OverflowException">計算時にオーバーフローした場合</exception>
     public int Add()
     {
-        var sum = firstNumber + secondNumber;
+        var sum = FirstNumber + SecondNumber;
         return sum.Value;
     }
 }
