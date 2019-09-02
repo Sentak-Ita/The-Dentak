@@ -30,7 +30,7 @@ public class Calculator
         }
         catch (ArgumentException e)
         {
-            throw new InvalidFirstArgumentException($"first number {firstNumber} is invalid", e);
+            throw new InvalidFirstArgumentException(firstNumber, e);
         }
 
         try
@@ -39,7 +39,7 @@ public class Calculator
         }
         catch (ArgumentException e)
         {
-            throw new InvalidSecondArgumentException($"second number {secondNumber} is invalid", e);
+            throw new InvalidSecondArgumentException(secondNumber, e);
         }
     }
 

@@ -5,7 +5,8 @@
 /// </summary>
 public class InvalidFirstArgumentException : Exception
 {
-    public InvalidFirstArgumentException(string message, Exception innerException) : base(message, innerException)
+    public InvalidFirstArgumentException(string argument, Exception innerException) 
+        : base($"first argument {argument} is invalid", innerException)
     {
     }
 }

@@ -5,7 +5,8 @@
 /// </summary>
 public class InvalidSecondArgumentException : Exception
 {
-    public InvalidSecondArgumentException(string message, Exception innerException) : base(message, innerException)
+    public InvalidSecondArgumentException(string argument, Exception innerException) 
+        : base($"second number {argument} is invalid", innerException)
     {
     }
 }
