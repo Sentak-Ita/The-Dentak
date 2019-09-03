@@ -3,46 +3,53 @@ using System;
 /// <summary>
 /// 計算機クラス
 /// </summary>
-class Calculator
+public class Calculator
 {
     /// <summary>
-    /// 計算を実行する。
-    /// 数値を二つ受け取り、足した結果を出力する。
-    /// 数値以外の文字列を受け取った場合、処理を終了する。
+    /// 一つ目の数
     /// </summary>
-    public void Execute()
+    private Number FirstNumber { get; }
+
+    /// <summary>
+    /// 二つ目の数
+    /// </summary>
+    private Number SecondNumber { get; }
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="firstNumber">計算する一つ目の数</param>
+    /// <param name="secondNumber">計算する二つ目の数</param>
+    /// <exception cref="InvalidFirstArgumentException">一つ目の引数が無効の場合</exception>
+    /// <exception cref="InvalidSecondArgumentException">二つ目の引数が無効の場合</exception>
+    public Calculator(string firstNumber, string secondNumber)
     {
-        Console.WriteLine("Please input two number.");
-
-        Console.Write("num1:");
-        var firstInputString = Console.ReadLine();
-        if(!int.TryParse(firstInputString, out var num1))
+        try
         {
-            Console.WriteLine($"{firstInputString} is not a number!!");
-            return;
+            FirstNumber = new Number(firstNumber);
         }
-        
-        Console.Write("num2:");
-        var secondInputString = Console.ReadLine();
-        if(!int.TryParse(secondInputString, out var num2))
+        catch (ArgumentIsNotNumberException e)
         {
-            Console.WriteLine($"{secondInputString} is not a number!!");
-            return;
+            throw new InvalidFirstArgumentException(firstNumber, e);
         }
 
-        var sum = Add(num1, num2);
-
-        Console.WriteLine($"{num1} + {num2} = {sum}");
+        try
+        {
+            SecondNumber = new Number(secondNumber);
+        }
+        catch (ArgumentIsNotNumberException e)
+        {
+            throw new InvalidSecondArgumentException(secondNumber, e);
+        }
     }
 
     /// <summary>
-    /// 二つの数値を足す。
+    /// 足し算を実行する。
     /// </summary>
-    /// <param name="num1">数値</param>
-    /// <param name="num2">数値</param>
-    /// <returns>二つの数値の和</returns>
-    public int Add(int num1, int num2)
+    /// <exception cref="SumOverflowsException">計算時にオーバーフローした場合</exception>
+    public int Add()
     {
-        return num1 + num2;
+        var sum = FirstNumber + SecondNumber;
+        return sum.Value;
     }
 }
