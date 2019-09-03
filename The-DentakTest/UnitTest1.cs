@@ -11,11 +11,6 @@ namespace The_DentakTest
     public class UnitTest1
     {
         /// <summary>
-        /// 改行コード
-        /// </summary>
-        private readonly string NEW_LINE = Environment.NewLine;
-
-        /// <summary>
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
         [TestCategory("正常系")]
