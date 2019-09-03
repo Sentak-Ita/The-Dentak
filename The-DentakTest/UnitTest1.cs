@@ -14,14 +14,12 @@ namespace The_DentakTest
         /// 二つの入力が両方とも数値である場合のテスト
         /// </summary>
         [TestCategory("正常系")]
-        [TestMethod]
-        public void 二つの入力が両方とも数値である()
+        [DataTestMethod]
+        [DataRow("1", "2", 3)]
+        [DataRow( "2147483646",  "1",  2147483647)] // 足し算した結果がint型の最大値
+        [DataRow("-2147483647", "-1", -2147483648)] // 足し算した結果がint型の最小値
+        public void 二つの入力が両方とも数値である(string firstInput, string secondInput, int expected)
         {
-            var firstInput = "1";
-            var secondInput = "2";
-
-            var expected = 3;
-
             var calculator = new Calculator(firstInput, secondInput);
             var actual = calculator.Add();
 
@@ -32,60 +30,35 @@ namespace The_DentakTest
         /// 一つ目の入力が数値でない場合のテスト
         /// </summary>
         [TestCategory("異常系")]
-        [TestMethod]
-        [ExpectedException(typeof(InvalidFirstArgumentException))]
-        public void 一つ目の入力が数値でないときInvalidFirstArgumentExceptionが発生する()
+        [DataTestMethod]
+        [DataRow("test", "2")]
+        public void 一つ目の入力が数値でないときInvalidFirstArgumentExceptionが発生する(string firstInput, string secondInput)
         {
-            var firstInput = "test";
-            var secondInput = "2";
-
-            var calculator = new Calculator(firstInput, secondInput);
-            calculator.Add();
+            Assert.ThrowsException<InvalidFirstArgumentException>(()=> new Calculator(firstInput, secondInput));
         }
 
         /// <summary>
         /// 二つ目の入力が数値でない場合のテスト
         /// </summary>
         [TestCategory("異常系")]
-        [TestMethod]
-        [ExpectedException(typeof(InvalidSecondArgumentException))]
-        public void 二つ目の入力が数値でないときInvalidSecondArgumentExceptionが発生する()
+        [DataTestMethod]
+        [DataRow("1", "test")]
+        public void 二つ目の入力が数値でないときInvalidSecondArgumentExceptionが発生する(string firstInput, string secondInput)
         {
-            var firstInput = "1";
-            var secondInput = "test";
-
-            var calculator = new Calculator(firstInput, secondInput);
-            calculator.Add();
+            Assert.ThrowsException<InvalidSecondArgumentException>(() => new Calculator(firstInput, secondInput));
         }
 
         /// <summary>
-        /// 計算結果がint型の最大値を上回る場合のテスト
+        /// オーバーフローの検知
         /// </summary>
         [TestCategory("異常系")]
-        [TestMethod]
-        [ExpectedException(typeof(SumOverflowsException))]
-        public void 計算結果がint型の最大値を上回ったときOverflowExceptionが発生する()
+        [DataTestMethod]
+        [DataRow("2147483647" , "1")]
+        [DataRow("-2147483648", "-1")]
+        public void 計算時にオーバーフローが発生した場合OverflowExceptionがthrowされる(string firstInput, string secondInput)
         {
-            var firstInput = int.MaxValue.ToString();
-            var secondInput = "1";
-
             var calculator = new Calculator(firstInput, secondInput);
-            calculator.Add();
-        }
-
-        /// <summary>
-        /// 計算結果がint型の最小値を下回る場合のテスト
-        /// </summary>
-        [TestCategory("異常系")]
-        [TestMethod]
-        [ExpectedException(typeof(SumOverflowsException))]
-        public void 計算結果がint型の最小値を下回ったときOverflowExceptionが発生する()
-        {
-            var firstInput = int.MinValue.ToString();
-            var secondInput = "-1";
-
-            var calculator = new Calculator(firstInput, secondInput);
-            calculator.Add();
+            Assert.ThrowsException<SumOverflowsException>(() => calculator.Add());
         }
     }
 }
